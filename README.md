@@ -8,3 +8,21 @@ Tech Stack:
 - Node.js
 - Express
 - MongoDB
+
+## System Architecture
+
+HireNova follows a REST-based architecture.
+
+Entities:
+
+- Users
+- Companies
+- Jobs
+- Applications
+- Saved Jobs
+
+Roles:
+
+- User
+- Recruiter
+- Admin
