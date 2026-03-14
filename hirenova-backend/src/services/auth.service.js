@@ -2,7 +2,7 @@ const User = require("../models/user.model");
 const { hashPassword, comparePassword } = require("../utils/password.util");
 const { generateToken } = require("../utils/jwt.util");
 
-exports.registerUser = async ({ name, email, password }) => {
+exports.registerUser = async ({ name, email, password, role }) => {
   if (!name || !email || !password) {
     throw new Error("All fields are required");
   }
@@ -19,6 +19,7 @@ exports.registerUser = async ({ name, email, password }) => {
     name,
     email,
     password: hashedPassword,
+    role,
   });
 
   const token = generateToken({ id: createdUser._id, role: createdUser.role });
