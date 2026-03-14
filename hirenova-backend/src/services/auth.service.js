@@ -43,7 +43,7 @@ exports.loginUser = async ({ email, password }) => {
   const isMatch = await comparePassword(password, user.password);
 
   if (!isMatch) {
-    throw new Error("Invalid credentials");
+    throw new Error("Invalid email or password");
   }
 
   const token = generateToken({ id: user._id, role: user.role });
