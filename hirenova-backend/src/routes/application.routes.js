@@ -18,4 +18,11 @@ router.get(
   applicationController.getMyApplications
 );
 
+router.get(
+  "/job/:jobId",
+  protect,
+  authorize("recruiter"),
+  applicationController.getApplicants
+);
+
 module.exports = router;
