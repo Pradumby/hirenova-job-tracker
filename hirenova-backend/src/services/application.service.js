@@ -10,7 +10,7 @@ exports.applyJob = async (jobId, userId) => {
 
   const existingApplication = await Application.findOne({
     job: jobId,
-    user: userId,
+    applicant: userId,
   });
 
   if (existingApplication) {
@@ -19,7 +19,7 @@ exports.applyJob = async (jobId, userId) => {
 
   const application = await Application.create({
     job: jobId,
-    user: userId,
+    applicant: userId,
   });
 
   return application;
