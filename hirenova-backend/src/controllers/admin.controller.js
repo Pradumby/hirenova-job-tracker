@@ -18,3 +18,16 @@ exports.getAllRecruiters = asyncHandler(async (req, res) => {
     recruiters,
   });
 });
+
+exports.updateUserStatus = asyncHandler(async (req, res) => {
+  const { userId } = req.params;
+  const { status } = req.body;
+
+  const user = await adminService.updateUserStatus(userId, status);
+
+  res.status(200).json({
+    success: true,
+    message: "User status updated",
+    user,
+  });
+});

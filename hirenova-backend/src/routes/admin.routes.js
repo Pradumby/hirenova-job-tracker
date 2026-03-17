@@ -12,4 +12,11 @@ router.get(
   adminController.getAllRecruiters
 );
 
+router.patch(
+  "/users/:userId/status",
+  protect,
+  authorize("admin"),
+  adminController.getAllUsers
+);
+
 module.exports = router;
