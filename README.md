@@ -1,4 +1,4 @@
-# HireNova 🚀
+# HireNova
 
 HireNova is a Job Tracker Platform built using the MERN stack.  
 It allows job seekers to find and apply for jobs, while recruiters can create and manage job postings.
@@ -160,5 +160,5 @@ Application Module
 Anup Yadav  
 Full Stack Developer (MERN)
 
-LinkedIn: (your linkedin link)
-GitHub: (your github link)
+LinkedIn:https://www.linkedin.com/in/anup2002/
+GitHub:https://github.com/Pradumby
