@@ -4,7 +4,14 @@ const jobController = require("../controllers/job.controller");
 const { protect, authorize } = require("../middleware/auth.middleware");
 
 router.post("/", protect, authorize("recruiter"), jobController.createJob);
+router.get(
+  "/recommended",
+  protect,
+  authorize("user"),
+  jobController.getRecommendedJobs
+);
 router.get("/", protect, jobController.getJobs);
+
 router.get("/:id", protect, jobController.getJobById);
 router.delete("/:id", protect, authorize("recruiter"), jobController.deleteJob);
 

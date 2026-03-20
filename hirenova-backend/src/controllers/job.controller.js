@@ -36,3 +36,14 @@ exports.deleteJob = asyncHandler(async (req, res) => {
     message: "Job deleted",
   });
 });
+
+exports.getRecommendedJobs = asyncHandler(async (req, res) => {
+  console.log(userId);
+
+  const jobs = await jobService.getRecommendedJobs(userId);
+
+  res.status(200).json({
+    success: true,
+    jobs,
+  });
+});

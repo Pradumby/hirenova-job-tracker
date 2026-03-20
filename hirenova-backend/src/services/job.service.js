@@ -1,4 +1,5 @@
 const Job = require("../models/job.model");
+const Application = require("../models/application.model");
 
 exports.createJob = async (jobData, userId) => {
   const job = await Job.create({
@@ -60,4 +61,34 @@ exports.getAllJobs = async (query) => {
     page,
     pages: Math.ceil(total / limit),
   };
+};
+
+exports.getRecommendedJobs = async (userId) => {
+  //  Get user's applications
+  const applications = await Application.find({ user: userId }).populate("job");
+
+  if (applications.length === 0) {
+    // return latest jobs
+    return await Job.find().sort({ createdAt: -1 }).limit(5);
+  }
+
+  // Extract titles & locations
+  const titles = applications.map((app) => app.job.title);
+  const locations = applications.map((app) => app.job.location);
+
+  //  Find similar jobs
+  const recommendedJobs = await Job.find({
+    $or: [
+      {
+        title: { $regex: titles.join("|"), $options: "i" },
+      },
+      {
+        location: { $regex: locations.join("|"), $options: "i" },
+      },
+    ],
+  })
+    .sort({ createdAt: -1 })
+    .limit(10);
+
+  return recommendedJobs;
 };
