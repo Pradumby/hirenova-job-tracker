@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getJobs } from "../features/jobs/jobSlice";
+import { useNavigate } from "react-router-dom";
 
 const Jobs = () => {
   const dispatch = useDispatch();
   const { jobs, loading, page, pages } = useSelector((state) => state.jobs);
+
+  const navigate = useNavigate();
 
   const [keyword, setKeyword] = useState("");
   const [location, setLocation] = useState("");
@@ -44,7 +47,11 @@ const Jobs = () => {
       ) : (
         <div className="grid gap-4">
           {jobs.map((job) => (
-            <div key={job._id} className="border p-4 shadow">
+            <div
+              key={job._id}
+              className="border p-4 shadow cursor-pointer"
+              onClick={() => navigate(`/jobs/${job._id}`)}
+            >
               <h2 className="text-lg font-semibold">{job.title}</h2>
               <p>{job.description}</p>
               <p className="text-sm text-gray-500">{job.location}</p>
