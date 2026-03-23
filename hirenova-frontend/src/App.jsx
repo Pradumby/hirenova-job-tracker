@@ -8,6 +8,8 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import MyApplications from "./pages/MyApplications";
 import CreateJob from "./pages/CreateJob";
 import MyJobs from "./pages/MyJobs";
+import Applicants from "./pages/Applicants";
+import RecruiterDashboard from "./pages/RecruiterDashboard";
 
 function App() {
   return (
@@ -64,6 +66,15 @@ function App() {
           element={
             <ProtectedRoute role="recruiter">
               <Applicants />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/recruiter/dashboard"
+          element={
+            <ProtectedRoute role="recruiter">
+              <RecruiterDashboard />
             </ProtectedRoute>
           }
         />
