@@ -38,6 +38,15 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route
+          path="/recruiter/create-job"
+          element={
+            <ProtectedRoute role="recruiter">
+              <CreateJob />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
