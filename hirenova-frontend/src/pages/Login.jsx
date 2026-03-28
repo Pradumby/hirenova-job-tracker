@@ -1,18 +1,30 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(loginUser(form));
+
+    try {
+      const res = await dispatch(loginUser(form)).unwrap();
+
+      if (res.user.role === "recruiter") {
+        navigate("/recruiter/dashboard");
+      } else {
+        navigate("/");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
