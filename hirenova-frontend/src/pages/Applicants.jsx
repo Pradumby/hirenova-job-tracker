@@ -5,11 +5,13 @@ import axios from "../api/axios";
 const Applicants = () => {
   const { jobId } = useParams();
   const [apps, setApps] = useState([]);
+  console.log(apps);
 
   useEffect(() => {
     const fetchApplicants = async () => {
       const res = await axios.get(`/applications/job/${jobId}`);
-      setApps(res.data.applications);
+
+      setApps(res.data.applicants);
     };
 
     fetchApplicants();
@@ -27,7 +29,7 @@ const Applicants = () => {
 
       {apps.map((app) => (
         <div key={app._id} className="border p-4 mb-3">
-          <p>{app.user.name}</p>
+          <p>{app.applicant.name}</p>
 
           <button onClick={() => updateStatus(app._id, "accepted")}>
             Accept
