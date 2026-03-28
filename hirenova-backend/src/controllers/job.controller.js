@@ -10,6 +10,14 @@ exports.createJob = asyncHandler(async (req, res) => {
   });
 });
 
+exports.getMyJobs = asyncHandler(async (req, res) => {
+  const jobs = await jobService.getMyJobs(req.user._id);
+  res.status(200).json({
+    success: true,
+    jobs,
+  });
+});
+
 exports.getJobs = asyncHandler(async (req, res) => {
   const result = await jobService.getAllJobs(req.query);
 

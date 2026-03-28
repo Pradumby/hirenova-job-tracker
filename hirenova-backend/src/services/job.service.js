@@ -10,6 +10,12 @@ exports.createJob = async (jobData, userId) => {
   return job;
 };
 
+exports.getMyJobs = async (recruiterId) => {
+  const job = await Job.find({ createdBy: recruiterId });
+
+  return job;
+};
+
 exports.getJobById = async (jobId) => {
   return await Job.findById(jobId).populate("createdBy", "name");
 };

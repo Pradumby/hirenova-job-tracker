@@ -5,6 +5,12 @@ const { protect, authorize } = require("../middleware/auth.middleware");
 
 router.post("/", protect, authorize("recruiter"), jobController.createJob);
 router.get(
+  "/my-jobs",
+  protect,
+  authorize("recruiter"),
+  jobController.getMyJobs
+);
+router.get(
   "/recommended",
   protect,
   authorize("user"),
